@@ -1,0 +1,42 @@
+package ejercicios;
+
+public class Caramelolandia {
+
+	/*
+	 * Estamos en caramelolandia, donde estan los peores ladrones de dulces. Una vez
+	 * al mes, se sienta una n cantidad de presos en ronda, contemplando al preso
+	 * que inicia la ronda, como el preso 0. A los presos se les da una m cantidad
+	 * de caramelos, estos caramelos se repartirán de uno en uno a cada preso,
+	 * contemplando que se comenzarán a repartir los caramelos desde el primer preso
+	 * (inicio). Se repartirán los caramelos hasta que no quede más y el último
+	 * caramelo en repartirse estará podrido, determinar a que preso, según su
+	 * posición en la ronda le tocará el caramelo podrido. Crear una función que
+	 * reciba estas tres variables: inicio: esta variable será el número del preso
+	 * que inicia la ronda. cantidadCaramelos: esta variable será el número de
+	 * caramelos que se les da a los presos. cantidadPresos: esta variable será el
+	 * número de presos que componen la ronda.
+	 */
+
+	public static int pricioneroDulce(int inicio, int cantidadCaramelos, int cantidadPresos) {
+
+		int resultado = 0;
+
+		while (inicio <= cantidadPresos && cantidadCaramelos != 0) {
+			cantidadCaramelos--;
+			resultado = inicio;
+
+			if (cantidadCaramelos == 0)
+				return resultado;
+
+			inicio++;
+
+			//inicio = (inicio > cantidadPresos) ? 0 : inicio;
+			if (inicio > cantidadPresos && cantidadCaramelos != 0)
+				inicio = 0;
+
+		}
+
+		return resultado;
+	}
+
+}
