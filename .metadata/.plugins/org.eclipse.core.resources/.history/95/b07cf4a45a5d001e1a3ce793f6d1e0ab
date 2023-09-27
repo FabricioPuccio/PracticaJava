@@ -1,0 +1,30 @@
+package ejercicios;
+
+public class NumeroCapicua {
+	
+	/*
+	 * Consigna:
+	 * Escribir una función que reciba un número x y determine si es capicúa o no. Esta deberá devolver verdadero(true)
+	 * si es capicúa y false(false) si no lo es. Además deberemos contemplar los siguientes esenarios:
+	 * 
+	 * 		Contemplar que el número  que llega puede ser negativo.
+	 * 		Contemplar que el número que llega puede ser de un digito, si es así debe devolber true.
+	 * 		Contemplar que el número que llega puede ser null, si es así debe devolver false.
+	 * 
+	 */
+	
+	public boolean numeroCapicua(Integer x) {
+		
+		if( x.equals(null)) return false;
+	
+		//String num = String.valueOf(x);
+		
+		
+		
+		return true;
+		
+	}
+	
+	
+
+}
