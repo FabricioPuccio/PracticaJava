@@ -1,0 +1,43 @@
+package ejercicios;
+
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class UniversoParalelo {
+	
+	/*
+	 * En un universo paralelo, donde los habitantes son medias, existe un crucero
+	 * de medias donde sube una lista de medias. Esta lista de tripulantes del crucero
+	 * es una Collection de letras.
+	 * 
+	 * Lo que se deberá hacer, es filtrar la lista de medias que se suben al crucero y 
+	 * retornar una lista que contenga los grupos de medias que si tenían pares. Esta 
+	 * lista final de medias pares se mostrarán ordenadas de menor a mayor.
+	 * 
+	 * A continuación un ejemplo:
+	 * List de medias que llegan: A,B,A,B,C,A,F,Z,C,H. 
+	 * A, B y C tienen pares, mientras que F, Z y H no.
+	 * Entonces la List que se deberiá retornar sería: A,B,C.
+	 */
+	
+	public static List<String> mediasAmigas(List<String> medias){
+		
+		List<String> mediasPares = new ArrayList<String>();
+		List<String> auxMedias = new ArrayList<String>(medias);
+		
+		for(String media : medias) {
+			int x = 0;
+			x = Collections.frequency(auxMedias, media);
+			System.out.println(Collections.frequency(auxMedias, media));
+			System.out.println(x);
+			System.out.println(media);
+			if(x > 1) {
+				 mediasPares.add(media);
+			 }
+		}
+		
+		return mediasPares;
+	}
+
+}

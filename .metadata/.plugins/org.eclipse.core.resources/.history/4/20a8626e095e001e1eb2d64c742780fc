@@ -1,0 +1,38 @@
+package principal;
+
+import ejercicios.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		/*System.out.println(NumeroCapicua.numeroCapicua(null)); // false
+		System.out.println(NumeroCapicua.numeroCapicua(123454321));// true
+		System.out.println(NumeroCapicua.numeroCapicua(-123454321));// true
+		System.out.println(NumeroCapicua.numeroCapicua(2));// true
+		System.out.println(NumeroCapicua.numeroCapicua(0));// true
+		System.out.println(NumeroCapicua.numeroCapicua(231));// false
+		System.out.println(NumeroCapicua.numeroCapicua(123));// false
+
+		System.out.println(Caramelolandia.pricioneroDulce(0, 10, 6));// 3
+		System.out.println(Caramelolandia.pricioneroDulce(7, 4, 8));// 2
+		System.out.println(Caramelolandia.pricioneroDulce(1, 5, 2));// 1
+		System.out.println(Caramelolandia.pricioneroDulce(0, 10, 1));// 0
+		System.out.println(Caramelolandia.pricioneroDulce(455, 1585, 500));// 39*/
+		
+		String [] array = {"A, B, A, B, C, A, F, Z, C, H"};
+		
+		for(int i = 0; i<array.length; i++) {
+			System.out.println(array[i]);
+			System.out.println(i);
+		}
+		List<String> listaMedias = new ArrayList<String>();
+		listaMedias = Arrays.asList(array);
+		System.out.println(UniversoParalelo.mediasAmigas(listaMedias));
+
+	}
+
+}
