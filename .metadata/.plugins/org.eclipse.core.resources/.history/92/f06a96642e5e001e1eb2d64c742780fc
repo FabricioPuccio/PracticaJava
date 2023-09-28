@@ -1,0 +1,58 @@
+package ejercicios;
+
+import java.time.LocalDate;
+
+public class PracticaTecnica {
+	
+	//Invertir una cadena
+	public void invertirString(String cadena) {
+		String cadenaInv = "";
+		for(int i = cadena.length(); i > 0; i--) {
+			cadenaInv = cadenaInv.concat(cadena.substring((i - 1), i));
+		}
+		System.out.println(cadenaInv);
+	}
+	
+	public void invertirString2(String cadena) {
+		String cadenaInv = new StringBuilder(cadena).reverse().toString();
+		System.out.println(cadenaInv);
+	}
+	
+	//Contar cuantas letras coinciden en una cadena de caracteres
+	public void contadorLetras(String text) {
+		
+		//ASCII CODE
+		int contador[] = new int[256];
+		
+		for(int i = 0; i < text.length(); i++) {
+			
+			//contador[text.charAt(i)] = contador[text.charAt(i)] + 1;
+			contador[text.charAt(i)]++;
+		}
+		
+		for(int i = 0; i < contador.length; i++) {
+			
+			if(contador[i] != 0) {
+			System.out.println((char) i +  ": " + contador[i] );
+			}
+		}
+	}
+	
+	public void esMultiploDe2(int num) {
+		if(num % 2 == 0) {
+			System.out.println("El número " + num +" es multiplo de 2");
+		}else {
+			System.out.println("El número " + num +" no es multiplo de 2");
+		}
+	}
+	
+	public void determinarBisiesto(int year) {
+		
+		boolean esBisiesto = LocalDate.of(year, 1, 1).isLeapYear();
+		
+		String result = esBisiesto ? "El año es bisiesto" : "El año no es bisiesto";
+		
+		System.out.println(result);
+	}
+
+}

@@ -1,0 +1,14 @@
+package ejercicios;
+
+public class PracticaTecnica {
+	
+	//Invertir una cadena
+	public void invertirString(String cadena) {
+		String cadenaInv = "";
+		for(int i = cadena.length(); i > 0; i--) {
+			cadenaInv = cadenaInv.concat(cadena.substring(i, (i - 1)));
+		}
+		System.out.println(cadenaInv);
+	}
+
+}

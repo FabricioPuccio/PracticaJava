@@ -1,0 +1,124 @@
+package ejercicios;
+
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.ArrayList;
+
+public class PracticaTecnica {
+	
+	//Ordena el arreglo de numeros de forma ascendente
+	public void metodoBurbuja(int [] array) {
+		for(int i = 0; i < array.length; i ++) {
+			for(int j = 1; j < array.length; j ++) {
+				if(array[i] > array[j]) {
+					int num = array[i];
+					array[i] = array[j];
+					array[j] = num;
+				}
+			}
+		}
+		for(int num: array) {
+			System.out.print("[" + num + "]");
+		}
+	}
+	
+	//Invertir una cadena
+	public void invertirString(String cadena) {
+		String cadenaInv = "";
+		for(int i = cadena.length(); i > 0; i--) {
+			cadenaInv = cadenaInv.concat(cadena.substring((i - 1), i));
+		}
+		System.out.println(cadenaInv);
+	}
+	
+	public void invertirString2(String cadena) {
+		String cadenaInv = new StringBuilder(cadena).reverse().toString();
+		System.out.println(cadenaInv);
+	}
+	
+	//Contar cuantas letras coinciden en una cadena de caracteres
+	public void contadorLetras(String text) {
+		
+		//ASCII CODE
+		int contador[] = new int[256];
+		
+		for(int i = 0; i < text.length(); i++) {
+			
+			//contador[text.charAt(i)] = contador[text.charAt(i)] + 1;
+			contador[text.charAt(i)]++;
+		}
+		
+		for(int i = 0; i < contador.length; i++) {
+			
+			if(contador[i] != 0) {
+			System.out.println((char) i +  ": " + contador[i] );
+			}
+		}
+	}
+	
+	//Verificar si en número es multiplo de 2
+	public void esMultiploDe2(int num) {
+		if(num % 2 == 0) {
+			System.out.println("El número " + num +" es multiplo de 2");
+		}else {
+			System.out.println("El número " + num +" no es multiplo de 2");
+		}
+	}
+	
+	//Determinar si un año es bisiesto o no
+	public void determinarBisiesto(int year) {
+		
+		boolean esBisiesto = LocalDate.of(year, 1, 1).isLeapYear();
+		
+		String result = esBisiesto ? "El año es bisiesto" : "El año no es bisiesto";
+		
+		System.out.println(result);
+	}
+	
+	//Desordenar una cadena de texto
+	public void desordenarCadena(String cadena) {
+		
+		List<String> lista = Arrays.asList(cadena.split(""));
+		
+		Collections.shuffle(lista);
+		
+		
+		lista.forEach(System.out::print);
+	}
+	
+	//De una lista de numeros debes obtener solo los número que no estan duplicados
+	public void numerosNoDuplicados(List<Integer> numeros) {
+		
+		List<Integer> notDup = new ArrayList<Integer>();
+		
+		for(int i = 0; i < numeros.size(); i++) {
+			int cont = 0;
+			
+			for(int j = 0 ; j < numeros.size(); j++) {
+				
+				if(numeros.get(i).equals(numeros.get(j))) {
+					cont++;
+				}
+				
+			}
+			
+			if(cont == 1) {
+				notDup.add(numeros.get(i));
+			}
+		}
+		
+		
+		notDup.forEach( n -> System.out.println(n));
+	}
+	
+	//Averigua si el texto del parámetro contine una vocal
+	public void contieneVocal(String cadena) {
+		// Buscar coincidencia mediante una expresión regular
+		boolean result = cadena.toLowerCase().matches(".*[aeiou].*");
+		String rpta = result ? "Contiene vocal": "No contiene vocal";
+		System.out.println(rpta);
+	}
+
+}

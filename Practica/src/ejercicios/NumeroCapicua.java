@@ -38,5 +38,17 @@ public class NumeroCapicua {
 
 		return esCapicua;
 	}
+	
+	public static boolean numeroCapicua2(int num) {
+		String numString = String.valueOf(num);
+		
+		String numInv = new StringBuilder(numString).reverse().toString();
+		
+		if(numInv.equals(numString)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 
 }

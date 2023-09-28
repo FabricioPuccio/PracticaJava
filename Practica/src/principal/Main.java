@@ -24,7 +24,7 @@ public class Main {
 		System.out.println(Caramelolandia.pricioneroDulce(455, 1585, 500));// 39*/
 		
 		
-		List<String> listaMedias = new ArrayList<String>(Arrays.asList("A","B","A","B","C","A","F","Z","C","H"));
+		/*List<String> listaMedias = new ArrayList<String>(Arrays.asList("A","B","A","B","C","A","F","Z","C","H"));
 		System.out.println(UniversoParalelo.mediasAmigas(listaMedias));
 		//Resultado: [A, B, C]
 		listaMedias = Arrays.asList("A", "B", "C", "D", "A", "C", "D", "A");
@@ -35,7 +35,32 @@ public class Main {
 		//Resultado: [A, R, S]
 		listaMedias = Arrays.asList("R", "E", "T", "A", "P", "S", "G", "H");
 		System.out.println(UniversoParalelo.mediasAmigas(listaMedias));
-		//Resultado: []
+		//Resultado: []*/
+		
+		PracticaTecnica tec = new PracticaTecnica();
+		int [] array = {11, 5, 22, 7, 8,5, 1, 2, 33, 74, 4, 3, 6, 55, 12, 11, 63, 88, 33};
+		tec.metodoBurbuja(array);
+		
+		tec.ordenamientoInsercion(array);
+		
+		tec.invertirString("Texto de ejemplo 1");
+		tec.invertirString2("Texto de ejemplo 2");
+		
+		tec.contadorLetras("cantidadcaracteres");
+		
+		tec.esMultiploDe2((int) (Math.random() * 100));
+		
+		tec.determinarBisiesto(2023);
+		
+		tec.desordenarCadena("ABCDEFGHIJKLMNOPQRSTVWXYZ");
+		
+		System.out.println("\n-----------------------------------------------------------------------------------");
+		List<Integer> numList = new ArrayList<Integer>(Arrays.asList(1, 2, 5, 2, 10, 6, 20, 6, 10));
+		tec.numerosNoDuplicados(numList);
+		
+		tec.contieneVocal("Fabricio");
+		
+		
 		
 
 	}
