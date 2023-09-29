@@ -1,0 +1,11 @@
+package accesoficheros;
+
+import java.io.File;
+
+public class AccesoDirectoriosFicheros {
+	
+	/*public File  getRuta() {
+		return = new File();
+	}*/
+
+}

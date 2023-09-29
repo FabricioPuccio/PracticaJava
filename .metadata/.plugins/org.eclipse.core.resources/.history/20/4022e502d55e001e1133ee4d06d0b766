@@ -1,0 +1,38 @@
+package accesoficheros;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class LeyendoFichero {
+	
+	public void leeLetraPorLetra() {
+		
+		try {
+			FileReader fichero = new FileReader("D:/programacion/personal-workspace/lectura-fichero-java.txt");
+			/*
+			 * La Clase FileReader hereda el método read() de la clase InputStreamReader.
+			 * Devuelve el (int) de los caracteres unicode (char) del texto y -1 cuando llega al final
+			 */
+			
+			int c = fichero.read();
+			
+			while(c != -1) {
+				
+				char letra = (char)c;
+				
+				System.out.print(letra);
+				
+				c = fichero.read();
+			}
+			
+		} catch (FileNotFoundException e) {
+		
+			e.printStackTrace();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+	}
+
+}

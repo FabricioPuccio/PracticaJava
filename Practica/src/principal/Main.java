@@ -4,12 +4,13 @@ import ejercicios.*;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+import accesoficheros.*;
 
 public class Main {
 
 	public static void main(String[] args) {
 
-		/*System.out.println(NumeroCapicua.numeroCapicua(null)); // false
+		System.out.println(NumeroCapicua.numeroCapicua(null)); // false
 		System.out.println(NumeroCapicua.numeroCapicua(123454321));// true
 		System.out.println(NumeroCapicua.numeroCapicua(-123454321));// true
 		System.out.println(NumeroCapicua.numeroCapicua(2));// true
@@ -21,10 +22,10 @@ public class Main {
 		System.out.println(Caramelolandia.pricioneroDulce(7, 4, 8));// 2
 		System.out.println(Caramelolandia.pricioneroDulce(1, 5, 2));// 1
 		System.out.println(Caramelolandia.pricioneroDulce(0, 10, 1));// 0
-		System.out.println(Caramelolandia.pricioneroDulce(455, 1585, 500));// 39*/
+		System.out.println(Caramelolandia.pricioneroDulce(455, 1585, 500));// 39
 		
 		
-		/*List<String> listaMedias = new ArrayList<String>(Arrays.asList("A","B","A","B","C","A","F","Z","C","H"));
+		List<String> listaMedias = new ArrayList<String>(Arrays.asList("A","B","A","B","C","A","F","Z","C","H"));
 		System.out.println(UniversoParalelo.mediasAmigas(listaMedias));
 		//Resultado: [A, B, C]
 		listaMedias = Arrays.asList("A", "B", "C", "D", "A", "C", "D", "A");
@@ -35,7 +36,7 @@ public class Main {
 		//Resultado: [A, R, S]
 		listaMedias = Arrays.asList("R", "E", "T", "A", "P", "S", "G", "H");
 		System.out.println(UniversoParalelo.mediasAmigas(listaMedias));
-		//Resultado: []*/
+		//Resultado: []
 		
 		PracticaTecnica tec = new PracticaTecnica();
 		int [] array = {11, 5, 22, 7, 8,5, 1, 2, 33, 74, 4, 3, 6, 55, 12, 11, 63, 88, 33};
@@ -60,8 +61,23 @@ public class Main {
 		
 		tec.contieneVocal("Fabricio");
 		
+		EscribiendoArchivo write = new EscribiendoArchivo();
+		write.crearEscribirArchivo();
+		write.escribirArchivoCrado();
 		
+		LeyendoFichero read = new LeyendoFichero();
+		read.leeLetraPorLetra();
+		read.lecturaArchivo();
 		
+		LecturaEscrituraBytes copyIm = new LecturaEscrituraBytes();
+		copyIm.lecturaEscrituraImagen();
+		
+		Serializacion serializing = new Serializacion();
+		serializing.serializando();
+		
+		AccesoDirectoriosFicheros access = new AccesoDirectoriosFicheros();
+		access.acceso();
+		access.pruebasRutas();
 
 	}
 

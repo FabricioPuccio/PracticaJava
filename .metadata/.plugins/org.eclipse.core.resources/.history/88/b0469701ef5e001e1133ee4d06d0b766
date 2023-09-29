@@ -1,0 +1,21 @@
+package accesoficheros;
+
+import java.io.File;
+
+public class AccesoDirectoriosFicheros {
+	
+	public void acceso() {
+		File ruta = getRuta();
+		System.out.println(ruta.getAbsolutePath());
+	}
+
+	private File getRuta() {
+		/*
+		 * Java, para asegurarse la compatibilidad en diferentes sistemas operativos nos
+		 * permite utilizar una variable estática de la clase File
+		 */
+		return new File("D:" + File.separator + "programacion" + File.separator + "personal-workspace" + File.separator
+				+ "serializacion-java");
+	}
+
+}

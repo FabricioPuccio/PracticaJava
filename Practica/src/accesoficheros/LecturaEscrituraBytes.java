@@ -1,0 +1,106 @@
+package accesoficheros;
+
+import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
+public class LecturaEscrituraBytes {
+
+	public void lecturaEscrituraImagen() {
+
+		int dimension = obtenerDimensionArchivo();
+
+		int byteDatosEntrada[] = new int[dimension];
+
+		llenarArray(byteDatosEntrada);
+
+		crearCopiaImagen(byteDatosEntrada);
+	}
+
+	private int obtenerDimensionArchivo() {
+		// contador para conocer la dimensión
+		int cont = 0;
+
+		try {
+
+			// Conseguir leer los bytes que forman parte de la imágen progrmacion.png
+			FileInputStream archivoImagen = new FileInputStream(
+					"D:/programacion/personal-workspace/Practica/imagenes/programacion.png");
+
+			boolean finalArchivo = false;
+
+			while (!finalArchivo) {
+
+				int byteDeImagen = archivoImagen.read();
+
+				if (byteDeImagen != -1) {
+
+					cont++;
+				} else {
+
+					finalArchivo = true;
+				}
+
+			}
+
+			archivoImagen.close();
+		} catch (IOException e) {
+
+			System.out.println("Error al intentar acceder al archivo");
+			e.printStackTrace();
+		}
+		return cont;
+	}
+
+	private void llenarArray(int[] array) {
+
+		try {
+
+			FileInputStream archivoImagen = new FileInputStream(
+					"D:/programacion/personal-workspace/Practica/imagenes/programacion.png");
+
+			// contador para llenar el array
+			int cont = 0;
+			boolean finalArchivo = false;
+
+			while (!finalArchivo) {
+
+				int byteDeImagen = archivoImagen.read();
+
+				if (byteDeImagen != -1) {
+
+					array[cont] = byteDeImagen;
+				} else {
+
+					finalArchivo = true;
+				}
+				cont++;
+			}
+
+			archivoImagen.close();
+
+		} catch (IOException e) {
+
+			System.out.println("Error al intentar acceder al archivo");
+			e.printStackTrace();
+		}
+	}
+
+	private void crearCopiaImagen(int archivo[]) {
+
+		try {
+			FileOutputStream archivoImagenCopia = new FileOutputStream(
+					"D:/programacion/personal-workspace/Practica/imagenes/programacion-copia.png");
+
+			for (int i = 0; i < archivo.length; i++) {
+				archivoImagenCopia.write(archivo[i]);
+			}
+
+			archivoImagenCopia.close();
+		} catch (IOException e) {
+			System.out.println("Error al intentar crear archivo");
+			e.printStackTrace();
+		}
+	}
+
+}

@@ -1,0 +1,64 @@
+package accesoficheros;
+
+import java.io.IOException;
+import java.io.FileInputStream;
+
+public class LecturaEscrituraBytes {
+
+	public void lecturaBytesImagen() {
+		// contador para conocer la dimensión del array y para llenarlo
+		int cont = 0;
+
+		int byteDatosEntrada[];
+
+		try {
+
+			// Conseguir leer los bytes que forman parte de la imágen progrmacion.png
+			FileInputStream archivoImagen = new FileInputStream(
+					"D:/programacion/personal-workspace/Practica/imagenes/programacion.png");
+
+			boolean finalArchivo = false;
+
+			while (!finalArchivo) {
+
+				int byteDeImagen = archivoImagen.read();
+
+				if (byteDeImagen != -1) {
+
+					cont++;
+				} else {
+
+					finalArchivo = true;
+				}
+
+			}
+
+			byteDatosEntrada = new int[cont];
+
+			finalArchivo = false;
+			cont = 0;
+
+			while (!finalArchivo) {
+
+				int byteDeImagen = archivoImagen.read();
+
+				if (byteDeImagen != -1) {
+
+					byteDatosEntrada[cont] = byteDeImagen;
+				} else {
+
+					finalArchivo = true;
+				}
+				cont++;
+			}
+
+			archivoImagen.close();
+
+		} catch (IOException e) {
+
+			System.out.println("Error al intentar acceder al archivo");
+			e.printStackTrace();
+		}
+	}
+
+}

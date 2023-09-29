@@ -1,0 +1,94 @@
+package accesoficheros;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+public class Serializando {
+
+}
+
+//Empleado implements Serializable = aquellos objetos de tipo Empleado pueden convertirse en bytes
+class Empleado implements Serializable {
+
+	/**
+	 * Para evitar problemas de compatibilidad a la hora de intentar acceder a la
+	 * lectura de un objeto serializado que su código podría ser modificado
+	 * declaramos nosotros en el programa nuestro propio SHA, no dejamos que java lo
+	 * cree automáticamente por defecto.
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private String nombre;
+	private double sueldo;
+	private Date fechaDeContrato;
+
+	public Empleado(String nombre, double sueldo, int anio, int mes, int dia) {
+
+		this.nombre = nombre;
+		this.sueldo = sueldo;
+		GregorianCalendar fecha = new GregorianCalendar(anio, mes - 1, dia);
+		this.fechaDeContrato = fecha.getTime();
+
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public double getSueldo() {
+		return sueldo;
+	}
+
+	public void setSueldo(double sueldo) {
+		this.sueldo = sueldo;
+	}
+
+	public Date getFechaDeContrato() {
+		return fechaDeContrato;
+	}
+
+	public void subirSueldo(double porcentaje) {
+		double aumento = this.sueldo * porcentaje / 100;
+		this.sueldo += aumento;
+	}
+
+	public String toString() {
+		return "\nNombre: " + nombre + "\n" + "Fecha de contrato: " + fechaDeContrato + "\n" + "Sueldo: $" + sueldo;
+	}
+}
+
+class Administrador extends Empleado {
+
+	private static final long serialVersionUID = 1L;
+	
+	private double incentivo;
+
+	public Administrador(String nombre, double sueldo, int anio, int mes, int dia) {
+		super(nombre, sueldo, anio, mes, dia);
+		this.incentivo = 0;
+	}
+
+	public void setIncentivo(double incentivo) {
+		this.incentivo = incentivo;
+	}
+
+	public double getIncentivo() {
+		return incentivo;
+	}
+
+	public void setSueldo() {
+		super.setSueldo(getSueldo() + getIncentivo());
+	}
+
+	public double getSueldo() {
+		return super.getSueldo();
+	}
+
+	public String toString() {
+		return super.toString() + "\nIncentivo: $" + incentivo;
+	}
+
+	
+
+}

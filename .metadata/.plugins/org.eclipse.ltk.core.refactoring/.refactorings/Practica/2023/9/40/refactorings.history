@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;accesoficheros.Serializando&apos; to &apos;Serializacion&apos;&#x0D;&#x0A;- Original project: &apos;Practica&apos;&#x0D;&#x0A;- Original element: &apos;accesoficheros.Serializando&apos;&#x0D;&#x0A;- Renamed element: &apos;accesoficheros.Serializacion&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Serializando&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;accesoficheros{Serializando.java[Serializando" matchStrategy="1" name="Serializacion" qualified="false" references="true" similarDeclarations="false" stamp="1696007139768" textual="false" version="1.0"/>
+</session>
