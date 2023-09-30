@@ -1,0 +1,45 @@
+package grafico;
+
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.io.File;
+
+import javax.swing.JFrame;
+
+public class ProcesadorTexto {
+
+	public void ejecutar() {
+		MarcoProcesador marco = new MarcoProcesador();
+		marco.setVisible(true);
+		marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+}
+
+class MarcoProcesador extends JFrame {
+
+	public MarcoProcesador() {
+		setTitle("Procesador de Texto");
+		// Centramos nuestro Marco en el centro de la pantalla
+		Toolkit miPantalla = Toolkit.getDefaultToolkit();
+
+		Dimension tamanio = miPantalla.getScreenSize();
+
+		int altoPantalla = tamanio.height;
+		int anchoPantalla = tamanio.width;
+
+		setSize(anchoPantalla / 2, altoPantalla / 2);
+
+		setLocation(anchoPantalla / 4, altoPantalla / 4);
+
+		/*
+		 * Cambiamos la imágen del símbolo de Java que el marco tiene por defecto. Icono
+		 * esquina superior izquierda del marco.
+		 */
+//"D:" + File.pathSeparator + "programacion" + File.pathSeparator + "personal-workspace" + File.pathSeparator + "Practica" + File.pathSeparator + "imagenes"+ File.pathSeparator + "java.png"
+		Image miIcono = miPantalla.getImage("imagenes"+ File.pathSeparator + "java.png");
+		setIconImage(miIcono);
+	}
+
+}

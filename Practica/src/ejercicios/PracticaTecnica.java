@@ -1,10 +1,12 @@
 package ejercicios;
 
+import javax.swing.JOptionPane;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
+
 
 public class PracticaTecnica {
 	
@@ -42,6 +44,43 @@ public class PracticaTecnica {
 			System.out.print("[" + num + "]");
 		}
 		System.out.println();
+	}
+	
+	//Buscar un elemento dentro de un arreglo
+	public void busquedaBinaria(int[] arreglo, int num) {
+		/*Para utilizar la busqueda binaria es importante que los elementos dentro
+        del array esten ordenados de forma creciente.*/
+		ordenamientoInsercion(arreglo);
+		
+		int inf, sup, mitad, i;
+        boolean band = false;
+        
+        inf = 0;
+        sup = arreglo.length;
+        mitad = (int) (inf + sup) / 2;
+        i = 0;
+        while (inf <= sup && band == false && i < arreglo.length) {
+            if (arreglo[mitad] == num) {
+                band = true;
+            }
+            if (arreglo[mitad] > num) {
+                sup = mitad;
+                mitad = (int)(inf + sup) / 2;
+            }
+            if (arreglo[mitad] < num) {
+                inf = mitad;
+                mitad = (int)(inf + sup) / 2;
+            }
+            i++;
+        }
+        if (band == false) {
+            JOptionPane.showMessageDialog(null, "El número " + num + " no se "
+                    + "encuentra dentro del arreglo.");
+        } else {
+            JOptionPane.showMessageDialog(null, "El número " + num + " se "
+                    + "encuentra en la posición " + mitad);
+        }
+		
 	}
 	
 	//Invertir una cadena

@@ -1,0 +1,235 @@
+package grafico;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JTextPane;
+import javax.swing.JToolBar;
+import javax.swing.KeyStroke;
+import javax.swing.text.StyledEditorKit;
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
+public class ProcesadorTexto {
+
+	public void ejecutar() {
+		MarcoProcesador marco = new MarcoProcesador();
+		marco.setVisible(true);
+		marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+}
+
+class MarcoProcesador extends JFrame {
+
+	public MarcoProcesador() {
+		setTitle("Procesador de Texto");
+		// Centramos nuestro Marco en el centro de la pantalla
+		Toolkit miPantalla = Toolkit.getDefaultToolkit();
+
+		Dimension tamanio = miPantalla.getScreenSize();
+
+		int altoPantalla = tamanio.height;
+		int anchoPantalla = tamanio.width;
+
+		setSize(anchoPantalla / 2, altoPantalla / 2);
+
+		setLocation(anchoPantalla / 4, altoPantalla / 4);
+
+		/*
+		 * Cambiamos la imágen del símbolo de Java que el marco tiene por defecto. Icono
+		 * esquina superior izquierda del marco.
+		 */
+		Image miIcono = miPantalla.getImage("imagenes"+ File.separator + "java.png");//Ruta relativa desde dir Practica
+		setIconImage(miIcono);
+		
+		add(new PanelProcesador());
+		
+		addWindowStateListener(new CambioEstadoFrame());
+	
+	}
+	
+
+}
+
+class PanelProcesador extends JPanel{
+	
+	private JPanel panelMenu;
+	private JMenuBar barraMenu;
+	private JTextPane texto;
+	private JMenu fuente, estilo, tamanio;
+	private ButtonGroup tamLetra;
+	private JRadioButtonMenuItem tam12, tam16, tam20, tam24;
+	private JPopupMenu emergente;
+	private JMenuItem opNeg, opCur;
+	private JToolBar barraHer;
+	
+	public PanelProcesador() {
+		
+		setLayout(new BorderLayout());
+		
+		panelMenu = new JPanel();
+//---------------------------------------------------------------------------------------------------------------------
+		barraMenu = new JMenuBar();
+//---------------------------------------------------------------------------------------------------------------------
+		fuente = new JMenu("Fuente");
+		estilo = new JMenu("Estilo");
+		tamanio = new JMenu("Tamaño");
+//---------------------------------------------------------------------------------------------------------------------
+		configurarMenu("Arial", "fuente", "Arial", 9, 1, "");
+		configurarMenu("Consolas", "fuente", "Consolas", 9, 1, "");
+		configurarMenu("Courier", "fuente", "Courier", 9, 1, "");
+		configurarMenu("Serif", "fuente", "Serif", 9, 1, "");
+		configurarMenu("Verdana", "fuente", "Verdana", 9, 1, "");
+//---------------------------------------------------------------------------------------------------------------------
+		configurarMenu("Negrita", "estilo", "", Font.BOLD, 1, "imagenes/negrita.png");
+		configurarMenu("Cursiva", "estilo", "", Font.ITALIC, 1, "imagenes"+File.separator+"italico.png");
+//---------------------------------------------------------------------------------------------------------------------
+		tamLetra = new ButtonGroup();
+		
+		tam12 = new JRadioButtonMenuItem("12");
+		tam16 = new JRadioButtonMenuItem("16");
+		tam20 = new JRadioButtonMenuItem("20");
+		tam24 = new JRadioButtonMenuItem("24");
+		
+		tam12.addActionListener(new StyledEditorKit.FontSizeAction("CambiaTam", 12));
+		tam16.addActionListener(new StyledEditorKit.FontSizeAction("CambiaTam", 16));
+		tam20.addActionListener(new StyledEditorKit.FontSizeAction("CambiaTam", 20));
+		tam24.addActionListener(new StyledEditorKit.FontSizeAction("CambiaTam", 24));
+		
+		//Agregar un atajo de teclado para JMenuItem tam24
+		tam24.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_DOWN_MASK));
+						
+		tamLetra.add(tam12);
+		tamLetra.add(tam16);
+		tamLetra.add(tam20);
+		tamLetra.add(tam24);
+				
+		tamanio.add(tam12);
+		tamanio.add(tam16);
+		tamanio.add(tam20);
+		tamanio.add(tam24);
+//---------------------------------------------------------------------------------------------------------------------
+		barraMenu.add(fuente);
+		barraMenu.add(estilo);
+		barraMenu.add(tamanio);
+		
+		panelMenu.add(barraMenu);
+		
+		add(panelMenu, BorderLayout.NORTH);
+//---------------------------------------------------------------------------------------------------------------------
+		texto = new JTextPane();
+		
+		add(texto, BorderLayout.CENTER);
+		
+		texto.setFont(new Font("Arial", Font.PLAIN, 12));
+//---------------------------------------------------------------------------------------------------------------------
+		emergente = new JPopupMenu();
+		
+		opNeg = new JMenuItem("Negrita");
+		opCur = new JMenuItem("Cursiva");
+		
+		opNeg.addActionListener(new StyledEditorKit.BoldAction());
+		opCur.addActionListener(new StyledEditorKit.ItalicAction());
+				
+		emergente.add(opNeg);
+		emergente.add(opCur);
+		
+		texto.setComponentPopupMenu(emergente);
+//---------------------------------------------------------------------------------------------------------------------
+		barraHer = new JToolBar();
+		configurarBarra("imagenes"+File.separator+"negrita.png").addActionListener(new StyledEditorKit.BoldAction());
+		configurarBarra("imagenes"+File.separator+"italico.png").addActionListener(new StyledEditorKit.ItalicAction());
+		configurarBarra("imagenes"+File.separator+"subrayado.png").addActionListener(new StyledEditorKit.UnderlineAction());
+		
+		barraHer.addSeparator();
+		
+		configurarBarra("imagenes"+File.separator+"letra-t-azul.png").addActionListener(new StyledEditorKit.ForegroundAction("letra azul", Color.BLUE));
+		configurarBarra("imagenes"+File.separator+"letra-t-amarilla.png").addActionListener(new StyledEditorKit.ForegroundAction("letra amarilla", Color.YELLOW));
+		configurarBarra("imagenes"+File.separator+"letra-t-roja.png").addActionListener(new StyledEditorKit.ForegroundAction("letra roja", Color.RED));
+		
+		barraHer.addSeparator();
+		
+		configurarBarra("imagenes"+File.separator+"alin-izq.png").addActionListener(new StyledEditorKit.AlignmentAction("Izquierda", 0));
+		configurarBarra("imagenes"+File.separator+"alin-cent.png").addActionListener(new StyledEditorKit.AlignmentAction("Centrada", 1));
+		configurarBarra("imagenes"+File.separator+"alin-der.png").addActionListener(new StyledEditorKit.AlignmentAction("Derecha", 2));
+		configurarBarra("imagenes"+File.separator+"justificar-alin.png").addActionListener(new StyledEditorKit.AlignmentAction("Justificada", 3));
+		
+		//Cambiar orientación de la barra (argumento 0 = horizontal - 1 = vertical
+		barraHer.setOrientation(1);
+				
+		//Agragamos a la lamina
+		add(barraHer, BorderLayout.EAST);
+
+	}
+	
+	private void configurarMenu(String rotulo, String menu, String tipoLetra, int style, int tamanio, String file) {
+		JMenuItem elemento = new JMenuItem(file);
+		
+		if(menu == "fuente") {
+			
+			fuente.add(elemento);
+			elemento.addActionListener(new StyledEditorKit.FontFamilyAction("cambiaLetra", tipoLetra));
+		
+		}else if(menu == "estilo") {
+			
+			estilo.add(elemento);
+			
+			if(style == Font.BOLD) {
+				
+				elemento.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_DOWN_MASK));
+				elemento.addActionListener(new StyledEditorKit.BoldAction());
+			
+			}else if(style == Font.ITALIC) {	
+				
+				elemento.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_K, InputEvent.CTRL_DOWN_MASK));
+				elemento.addActionListener(new StyledEditorKit.ItalicAction());
+			
+			}	
+		}
+		
+	}
+	
+	private JButton configurarBarra(String ruta) {
+		
+		JButton boton = new JButton(new ImageIcon(ruta));
+		
+		barraHer.add(boton);
+		
+		return boton;
+		
+	}
+	
+	
+	
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

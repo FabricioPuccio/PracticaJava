@@ -5,12 +5,13 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import accesoficheros.*;
+import grafico.*;
 
 public class Main {
 
 	public static void main(String[] args) {
 
-		System.out.println(NumeroCapicua.numeroCapicua(null)); // false
+		/*System.out.println(NumeroCapicua.numeroCapicua(null)); // false
 		System.out.println(NumeroCapicua.numeroCapicua(123454321));// true
 		System.out.println(NumeroCapicua.numeroCapicua(-123454321));// true
 		System.out.println(NumeroCapicua.numeroCapicua(2));// true
@@ -77,7 +78,10 @@ public class Main {
 		
 		AccesoDirectoriosFicheros access = new AccesoDirectoriosFicheros();
 		access.acceso();
-		access.pruebasRutas();
+		access.pruebasRutas();*/
+		
+		ProcesadorTexto procesador = new ProcesadorTexto();
+		procesador.ejecutar();
 
 	}
 
