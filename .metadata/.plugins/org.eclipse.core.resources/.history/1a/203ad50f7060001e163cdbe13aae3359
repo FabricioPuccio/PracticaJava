@@ -1,0 +1,130 @@
+package grafico;
+
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.GridLayout;
+import java.io.File;
+import java.util.Date;
+
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
+public class LaminaDialogos extends JPanel{
+	
+	private JPanel panelCenter, panelBottom;
+	private CajaBotonesDeRadio cajaUno, cajaDos, cajaTres, cajaCuatro, cajaCinco, cajaSeis;
+	private JButton mostrar;
+	private String cadena = "Mensaje";
+	private Icon iconoMensaje = new ImageIcon("imagenes"+File.separator+"h_azul.png");
+	private Object fecha = new Date();
+	private Component componente;
+	
+	public LaminaDialogos() {
+		
+		setLayout(new BorderLayout());
+		
+		panelCenter = new JPanel();
+		panelCenter.setLayout(new GridLayout(2,3));
+		
+		
+	}
+	
+	class CajaBotonesDeRadio extends JPanel{
+		
+		private ButtonGroup grupo;
+		
+		public CajaBotonesDeRadio(String titulo, String[] opciones) {
+			
+			setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), titulo));
+			setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+			
+			grupo = new ButtonGroup();
+			
+			for(int i = 0; i < opciones.length; i++) {
+				
+				JRadioButton boton = new JRadioButton(opciones[i]);
+				boton.setSelected(i==0);
+				boton.setActionCommand(opciones[i]);
+				add(boton);
+				grupo.add(boton);
+				
+			}
+		}
+		
+		public String seleccionado() {
+			
+			 /*ButtonModel selec = grupo.getSelection();
+	        String s = selec.getActionCommand();
+	        return s;*/
+			
+			return grupo.getSelection().getActionCommand();
+		}
+		
+		public Object mensaje() {
+			if(cajaTres.seleccionado().equals("Cadena")) {
+				return cadena;
+			}else if(cajaTres.seleccionado().equals("Icono")) {
+				return iconoMensaje;
+			}else if(cajaTres.seleccionado().equals("Componente")) {
+				return componente;
+			}else if(cajaTres.seleccionado().equals("Otros")) {
+				return fecha;
+			}else {
+				return new Object[] {cadena, iconoMensaje, componente, fecha};
+			}
+		}
+		
+		public int mensajeTipo() {
+			if(cajaDos.seleccionado().equals("ERROR_MESSAGE")) {
+				return JOptionPane.ERROR_MESSAGE; //(=0)
+			}else if(cajaDos.seleccionado().equals("INFORMATION_MESSAGE")) {
+				return JOptionPane.INFORMATION_MESSAGE; //(=1)
+			}else if(cajaDos.seleccionado().equals("WARNING_MESSAGE")) {
+				return JOptionPane.WARNING_MESSAGE; //(=2)
+			}else if(cajaDos.seleccionado().equals("QUESTION_MESSAGE")) {
+				return JOptionPane.QUESTION_MESSAGE; //(=3)
+			}else {
+				return -1; //(JOptionPane.PLAIN-MESSAGE)
+			}
+		}
+		
+		 public int confirmacion(){
+			 if(cajaCuatro.seleccionado().equals("DEFAULT_OPTION")){
+				 return JOptionPane.DEFAULT_OPTION; //(= -1)
+			 }else if(cajaCuatro.seleccionado().equals("YES_NO_OPTION")){
+				 return JOptionPane.YES_NO_OPTION; //(= 0)
+		     } else if (cajaCuatro.seleccionado().equals("YES_NO_CANCEL_OPTION")) {
+		    	 return JOptionPane.YES_NO_CANCEL_OPTION; //(= 1)
+		     } else{
+		    	 return JOptionPane.OK_CANCEL_OPTION; //(= 2)
+		     }
+		 }
+		 
+		 public Object[] opciones(){
+		        if(cajaCinco.seleccionado().equals("String[]")){
+		            return new String[]{
+		                    "Amarillo",
+		                    "Azul",
+		                    "Rojo"
+		            };
+		        }else if(cajaCinco.seleccionado().equals("Icon[]")){
+		            return new Icon[]{
+		                    new ImageIcon("imagenes"+File.separator+"h_azul.png"),
+		                    new ImageIcon("imagenes"+File.separator+"h_azul.png"),
+		                    new ImageIcon("imagenes"+File.separator+"h_azul.png"),
+		            };
+		        } else {
+		            return new Object[]{cadena, iconoMensaje, componente, fecha};
+		        }
+		    }
+		 
+		 
+	}
+}

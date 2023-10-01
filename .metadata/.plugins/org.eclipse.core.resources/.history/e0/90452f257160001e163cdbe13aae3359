@@ -10,8 +10,8 @@ import grafico.*;
 public class Main {
 
 	public static void main(String[] args) {
-//-----------------------------ejercicios----------------------------------------------------------
-		System.out.println(NumeroCapicua.numeroCapicua(null)); // false
+
+		/*System.out.println(NumeroCapicua.numeroCapicua(null)); // false
 		System.out.println(NumeroCapicua.numeroCapicua(123454321));// true
 		System.out.println(NumeroCapicua.numeroCapicua(-123454321));// true
 		System.out.println(NumeroCapicua.numeroCapicua(2));// true
@@ -65,7 +65,7 @@ public class Main {
 		EscribiendoArchivo write = new EscribiendoArchivo();
 		write.crearEscribirArchivo();
 		write.escribirArchivoCrado();
-//-----------------------------accessoficheros----------------------------------------------------------	
+		
 		LeyendoFichero read = new LeyendoFichero();
 		read.leeLetraPorLetra();
 		read.lecturaArchivo();
@@ -78,12 +78,10 @@ public class Main {
 		
 		AccesoDirectoriosFicheros access = new AccesoDirectoriosFicheros();
 		access.acceso();
-		access.pruebasRutas();
-//-----------------------------grafico----------------------------------------------------------		
+		access.pruebasRutas();*/
+		
 		ProcesadorTexto procesador = new ProcesadorTexto();
 		procesador.ejecutar();
-		
-		InterfazGraficaDialogos.ejecutarInterfaz();
 
 	}
 
